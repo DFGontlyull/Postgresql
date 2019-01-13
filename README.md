@@ -23,8 +23,8 @@ chown postgres /usr/local/pgsql/data # postgres( DBMS 운영 유저 ) 에게 데
 su - postgres # postgres 유저로 콘솔 권한 변경
 /usr/local/pgsql/bin/initdb -D /usr/local/pgsql/data
 /usr/local/pgsql/bin/postgres -D /usr/local/pgsql/data >logfile 2>&1 &
-/usr/local/pgsql/bin/createdb test
-/usr/local/pgsql/bin/psql test
+/usr/local/pgsql/bin/createdb postgres
+/usr/local/pgsql/bin/psql postgres
 ```
 
 
