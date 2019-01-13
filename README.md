@@ -9,9 +9,10 @@ sudo apt-get install libreadline-dev zlib1g-dev flex bison
 - libreadline-dev zlib1g-dev : 압축 및 입출력 라이브러리 ( 필수 )
 - flex, bsion : parser code 생성 라이브러리 ( 옵션 )
 
-wget https://ftp.postgresql.org/pub/source/v10.5/postgresql-10.5.tar.gz
-# 원본 소스, 해당 부분은 이 GitHub 프로젝트로 변경될 수 있음.
-tar -xzvf postgresql-10.5.tar.gz
+git clone https://github.com/DFGontlyull/Postgresql
+// wget https://ftp.postgresql.org/pub/source/v10.5/postgresql-10.5.tar.gz
+// # 원본 소스, 해당 부분은 이 GitHub 프로젝트로 변경될 수 있음.
+// tar -xzvf  postgresql-10.5.tar.gz
 
 ./configure # Build 환경 설정
 make -j8 # Build
