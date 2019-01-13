@@ -28,3 +28,20 @@ su - postgres # postgres 유저로 콘솔 권한 변경
 ```
 
 
+### 목표 구절
+```
+select * from *A* zigzag join *B* ON *A*.id = *B*.id
+// 현재 ERROR:  unrecognized node type: 143 발생 ( execExpr.c 에서 T_ZigzagJoin에 대한 동작이 정의되어 있지 않아서 발생하는 문제 )
+```
+
+
+### 완료 작업
+- ~ zigzag join ~ on ~ Parser 조건 추가
+- 쿼리 트리 생성에서 기존 Merge Join과 동일한 Cost를 가지지만, 작업은 T_ZigzagJoin으로 생성 완료
+
+
+### 작업 우선 순위
+- T_ZigzagJoin 일 경우 execExpr.c에서 적절한 동작을 수행
+- nodeMergejoin.c 를 Copy 하여 새롭게 Customizing이 가능한 영역 생성
+- 조인의 각 옵션별 해당되는 State 선별
+- 내부적인 Loop를 Control 하는 새로운 Flag 생성
