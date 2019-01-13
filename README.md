@@ -1,6 +1,6 @@
 # Postgresql 분석 및 Zigzag Join 추가용 프로젝트
 
-*** tech03042의 postgresql-10.5 Reposit을 이어받음 ***
+*** 본 프로젝트는 tech03042의 postgresql-10.5 Reposit을 이어받음 ***
 
 
 ## library dependencies
