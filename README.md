@@ -3,7 +3,8 @@
 *** tech03042의 postgresql-10.5 Reposit을 이어받음 ***
 
 
-library dependencies
+## library dependencies
+```
 sudo apt-get install libreadline-dev zlib1g-dev flex bison
 - libreadline-dev zlib1g-dev : 압축 및 입출력 라이브러리 ( 필수 )
 - flex, bsion : parser code 생성 라이브러리 ( 옵션 )
@@ -24,6 +25,6 @@ su - postgres # postgres 유저로 콘솔 권한 변경
 /usr/local/pgsql/bin/postgres -D /usr/local/pgsql/data >logfile 2>&1 &
 /usr/local/pgsql/bin/createdb test
 /usr/local/pgsql/bin/psql test
-
+```
 
 
