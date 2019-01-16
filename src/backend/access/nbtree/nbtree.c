@@ -480,7 +480,7 @@ btbeginscan(Relation rel, int nkeys, int norderbys)
 
 	/* get the scan */
 	scan = RelationGetIndexScan(rel, nkeys, norderbys);
-
+	//
 	/* allocate private workspace */
 	so = (BTScanOpaque) palloc(sizeof(BTScanOpaqueData));
 	BTScanPosInvalidate(so->currPos);

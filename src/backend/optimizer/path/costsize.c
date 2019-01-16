@@ -126,6 +126,7 @@ bool enable_hashagg = true;
 bool enable_nestloop = true;
 bool enable_material = true;
 bool enable_mergejoin = true;
+bool enable_zigzagjoin = true;
 bool enable_hashjoin = true;
 bool enable_gathermerge = true;
 

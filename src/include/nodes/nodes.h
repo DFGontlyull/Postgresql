@@ -122,6 +122,7 @@ typedef enum NodeTag {
     T_JoinState,
     T_NestLoopState,
     T_MergeJoinState,
+	T_ZigzagJoinState,   // T_ZigzagstateJoin 추가
     T_HashJoinState,
     T_MaterialState,
     T_SortState,

@@ -1356,6 +1356,16 @@ typedef struct MergePath
 	bool		materialize_inner;	/* add Materialize to inner? */
 } MergePath;
 
+typedef struct ZigzagPath
+{
+	JoinPath	jpath;
+	List	   *path_zigzagclauses;	/* join clauses to be used for merge */
+	List	   *outersortkeys;	/* keys for explicit sort, if any */
+	List	   *innersortkeys;	/* keys for explicit sort, if any */
+	bool		skip_mark_restore;	/* can executor skip mark/restore? */
+	bool		materialize_inner;	/* add Materialize to inner? */
+} ZigzagPath;
+
 /*
  * A hashjoin path has these fields.
  *
@@ -2223,6 +2233,7 @@ typedef struct JoinCostWorkspace
 
 	/* private for cost_nestloop code */
 	Cost		inner_run_cost; /* also used by cost_mergejoin code */
+	// ZigzagJoin cost 변수 생성??
 	Cost		inner_rescan_run_cost;
 
 	/* private for cost_mergejoin code */

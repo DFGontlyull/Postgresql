@@ -877,6 +877,34 @@ _copyMergeJoin(const MergeJoin *from)
 	return newnode;
 }
 
+static ZigzagJoin *
+_copyZigzagJoin(const ZigzagJoin *from)
+{
+	ZigzagJoin  *newnode = makeNode(ZigzagJoin);
+	int			numCols;
+
+	/*
+	 * copy node superclass fields
+	 */
+	CopyJoinFields((const Join *)from, (Join *)newnode);
+
+	/*
+	 * copy remainder of node
+	 */
+	COPY_SCALAR_FIELD(skip_mark_restore);
+	COPY_NODE_FIELD(zigzagclauses);
+	numCols = list_length(from->zigzagclauses);
+	if (numCols > 0)
+	{
+		//COPY_POINTER_FIELD(mergeFamilies, numCols * sizeof(Oid));
+		//COPY_POINTER_FIELD(mergeCollations, numCols * sizeof(Oid));
+		//COPY_POINTER_FIELD(mergeStrategies, numCols * sizeof(int));
+		//COPY_POINTER_FIELD(mergeNullsFirst, numCols * sizeof(bool));
+	}
+
+	return newnode;
+}
+
 /*
  * _copyHashJoin
  */
@@ -4776,6 +4804,9 @@ copyObjectImpl(const void *from)
 			break;
 		case T_MergeJoin:
 			retval = _copyMergeJoin(from);
+			break;
+		case T_ZigzagJoin:
+			retval = _copyZigzagJoin(from);
 			break;
 		case T_HashJoin:
 			retval = _copyHashJoin(from);

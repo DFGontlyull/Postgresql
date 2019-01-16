@@ -761,6 +761,38 @@ _outMergeJoin(StringInfo str, const MergeJoin *node)
 }
 
 static void
+_outZigzagJoin(StringInfo str, const ZigzagJoin *node)
+{
+	int			numCols;
+	int			i;
+
+	WRITE_NODE_TYPE("ZIGZAGJOIN");
+
+	_outJoinPlanInfo(str, (const Join *)node);
+
+	WRITE_BOOL_FIELD(skip_mark_restore);
+	WRITE_NODE_FIELD(zigzagclauses);
+
+	numCols = list_length(node->zigzagclauses);
+
+	//appendStringInfoString(str, " :mergeFamilies");
+	//for (i = 0; i < numCols; i++)
+	//	appendStringInfo(str, " %u", node->mergeFamilies[i]);
+
+	//appendStringInfoString(str, " :mergeCollations");
+	//for (i = 0; i < numCols; i++)
+	//	appendStringInfo(str, " %u", node->mergeCollations[i]);
+
+	//appendStringInfoString(str, " :mergeStrategies");
+	//for (i = 0; i < numCols; i++)
+	//	appendStringInfo(str, " %d", node->mergeStrategies[i]);
+
+	//appendStringInfoString(str, " :mergeNullsFirst");
+	//for (i = 0; i < numCols; i++)
+	//	appendStringInfo(str, " %s", booltostr(node->mergeNullsFirst[i]));
+}
+
+static void
 _outHashJoin(StringInfo str, const HashJoin *node)
 {
 	WRITE_NODE_TYPE("HASHJOIN");
@@ -3709,6 +3741,9 @@ outNode(StringInfo str, const void *obj)
 				break;
 			case T_MergeJoin:
 				_outMergeJoin(str, obj);
+				break;
+			case T_ZigzagJoin:
+				_outZigzagJoin(str, obj);
 				break;
 			case T_HashJoin:
 				_outHashJoin(str, obj);

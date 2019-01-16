@@ -241,6 +241,10 @@ ExecReScan(PlanState *node)
 			ExecReScanMergeJoin((MergeJoinState *) node);
 			break;
 
+		case T_ZigzagJoinState:
+			ExecReScanMergeJoin((ZigzagJoinState *)node);
+			break;
+
 		case T_HashJoinState:
 			ExecReScanHashJoin((HashJoinState *) node);
 			break;

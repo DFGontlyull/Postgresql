@@ -716,6 +716,18 @@ typedef struct MergeJoin
 	bool	   *mergeNullsFirst;	/* per-clause nulls ordering */
 } MergeJoin;
 
+typedef struct ZigzagJoin
+{
+	Join		join;
+	//bool		skip_mark_restore;	/* Can we skip mark/restore calls? */
+	List	   *zigzagclauses;	/* mergeclauses as expression trees */
+	/* these are arrays, but have the same length as the mergeclauses list: */
+	//Oid		   *mergeFamilies;	/* per-clause OIDs of btree opfamilies */
+	//Oid		   *mergeCollations;	/* per-clause OIDs of collations */
+	//int		   *mergeStrategies;	/* per-clause ordering (ASC or DESC) */
+	//bool	   *mergeNullsFirst;	/* per-clause nulls ordering */
+} ZigzagJoin;
+
 /* ----------------
  *		hash join node
  * ----------------

@@ -296,6 +296,11 @@ ExecInitNode(Plan *node, EState *estate, int eflags)
 													 estate, eflags);
 			break;
 
+		case T_ZigzagJoin:
+			result = (PlanState *)ExecInitMergeJoin((ZigzagJoin *)node,
+				estate, eflags);
+			break;
+
 		case T_HashJoin:
 			result = (PlanState *) ExecInitHashJoin((HashJoin *) node,
 													estate, eflags);
@@ -662,6 +667,10 @@ ExecEndNode(PlanState *node)
 
 		case T_MergeJoinState:
 			ExecEndMergeJoin((MergeJoinState *) node);
+			break;
+
+		case T_ZigzagJoinState:
+			ExecEndMergeJoin((ZigzagJoinState *)node);
 			break;
 
 		case T_HashJoinState:

@@ -757,6 +757,15 @@ GetExistingLocalJoinPath(RelOptInfo *joinrel)
 				}
 				break;
 
+			case T_ZigzagJoin:
+				{
+					ZigzagPath  *merge_path = makeNode(ZigzagPath);
+
+					memcpy(merge_path, path, sizeof(ZigzagPath));
+					joinpath = (JoinPath *)merge_path;
+				}
+				break;
+
 			default:
 
 				/*

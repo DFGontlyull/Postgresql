@@ -1,4 +1,4 @@
-/*
+ /*
  * contrib/pg_standby/pg_standby.c
  *
  *

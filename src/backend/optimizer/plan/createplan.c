@@ -380,6 +380,7 @@ create_plan_recurse(PlannerInfo *root, Path *best_path, int flags)
 			break;
 		case T_HashJoin:
 		case T_MergeJoin:
+		case T_ZigzagJoin:
 		case T_NestLoop:
 			plan = create_join_plan(root,
 									(JoinPath *) best_path);
